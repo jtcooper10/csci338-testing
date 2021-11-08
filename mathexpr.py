@@ -7,8 +7,11 @@ def compute(ops: "list[str]"):
         if op.startswith("+"):
             if op == "++":
                 stack = [sum(stack)]
-            else:
+            elif op == "+":
                 stack.append(stack.pop() + stack.pop())
+            else:
+                # Assume it's a "positive value"
+                stack.append(int(op[1:]))
         elif op == "-":
             opl, opr = stack.pop(), stack.pop()
             stack.append(opr - opl)
@@ -22,10 +25,7 @@ def compute(ops: "list[str]"):
             stack.append(opr ** opl)
         else:
             # Assumed to be a value of some sort
-            try:
-                stack.append(int(op))
-            except:
-                print("oooh baby what is u doin")
+            stack.append(int(op))
 
     if len(stack) > 1:
         raise ValueError("Too many values remaining")

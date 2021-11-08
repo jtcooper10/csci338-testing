@@ -20,6 +20,22 @@ class TestMathExpressions(unittest.TestCase):
         result = mathexpr.compute(["2", "3", "*"])
         self.assertTrue(result == 6)
 
+    def test_that_summations_work(self):
+        result = mathexpr.compute(["1", "2", "4", "3", "7", "++"])
+        self.assertEqual(result, 17, f"Computation was incorrect (got {result}, expected 17)")
+
+    def test_that_exponents_work(self):
+        result = mathexpr.compute(["2", "8", "^"])
+        self.assertEqual(result, 256, f"Computation was incorrect (got {result}, expected 256)")
+
+    def test_that_explicit_positive_numbers_work(self):
+        result = mathexpr.compute(["60", "+12", "/"])
+        self.assertEqual(result, 5, f"Computation was incorrect (got {result}, expected 22)")
+
+    def test_that_explicit_negative_numbers_work(self):
+        result = mathexpr.compute(["73", "-19", "+"])
+        self.assertEqual(result, 54, f"Computation was incorrect (got {result}, expected 54)")
+
     def test_decimal_raises_error(self):
         with self.assertRaises(Exception):
             mathexpr.compute(["2", "3.1", "*"])
