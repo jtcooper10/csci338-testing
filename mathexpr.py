@@ -1,10 +1,7 @@
 #!/usr/bin/env python3
 import sys
 
-def compute(ops: "list[str]" = None):
-    if ops is None:
-        ops = []
-
+def compute(ops: "list[str]"):
     stack = []
     for op in ops:
         if op.startswith("+"):
