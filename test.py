@@ -44,17 +44,17 @@ class TestMathExpressions(unittest.TestCase):
         with self.assertRaises(IndexError):
             mathexpr.compute([])
 
-    def test_too_many_operands_raises_error(self):
-        with self.assertRaises(IndexError):
-            result = mathexpr.compute(["2", "3", "*", "/"])
+    def test_too_many_operators_raises_error(self):
+        with self.assertRaises(mathexpr.TooFewOperandsError):
+            mathexpr.compute(["2", "3", "*", "/"])
 
     def test_too_many_numbers_raises_error(self):
-        with self.assertRaises(ValueError):
-            result = mathexpr.compute(["5", "2", "3", "*"])
+        with self.assertRaises(mathexpr.TooManyOperandsError):
+            mathexpr.compute(["5", "2", "3", "*"])
 
     def test_wrong_order_raises_error(self):
-        with self.assertRaises(IndexError):
-            result = mathexpr.compute(["+", "5", "2"])
+        with self.assertRaises(mathexpr.TooFewOperandsError):
+            mathexpr.compute(["+", "5", "2"])
 
 if __name__ == "__main__":
     unittest.main(TestMathExpressions())
