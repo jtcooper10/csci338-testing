@@ -87,6 +87,8 @@ def main(argv) -> "int":
         # All exceptions are handled in the same way: print, then return 1
         try:
             raise
+        except ZeroDivisionError:
+            print(" ! Attempted to divide by zero")
         except TooFewOperandsError as err:
             print(f" ! Not enough operands on stack for operator {err.operator}")
         except TooManyOperandsError as err:
